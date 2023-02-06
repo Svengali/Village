@@ -37,8 +37,8 @@ fn vec_from_angle(angle: f32) -> Vector2 {
 /// Makes a random `Vector2` with the given max magnitude.
 fn random_vec(max_magnitude: f32) -> Vector2 {
     
-    let angle = rand::thread_rng().gen_range(0.0, 2.0 * std::f32::consts::PI);
-    let mag = rand::thread_rng().gen_range(0.0, max_magnitude );
+    let angle = rand::thread_rng().gen_range(0.0 .. 2.0 * std::f32::consts::PI);
+    let mag = rand::thread_rng().gen_range(0.0 .. max_magnitude );
     vec_from_angle(angle) * (mag)
 }
 
@@ -140,8 +140,9 @@ fn create_rocks(
 
  
         let mut rock = create_rock();
-        let r_angle = rand::thread_rng().gen_range(0.0, 1.0) * 2.0 * std::f32::consts::PI;
-        let r_distance = rand::thread_rng().gen_range(min_radius, max_radius);
+        let r_angle = rand::thread_rng().gen_range(0.0 .. 1.0) * 2.0 * std::f32::consts::PI;
+        let r_distance = rand::thread_rng().gen_range(min_radius .. max_radius);
+
         rock.pos = exclusion + vec_from_angle(r_angle) * r_distance;
         rock.velocity = random_vec( MAX_ROCK_VEL);
         rock
@@ -438,6 +439,8 @@ fn draw_actor(
         .rotation(actor.facing as f32)
         .offset(Point2::new(0.5, 0.5));
     canvas.draw(image, drawparams);
+
+    canvas.draw(instances, param);
 }
 
 /// **********************************************************************

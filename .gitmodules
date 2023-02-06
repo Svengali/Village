@@ -1,0 +1,3 @@
+[submodule "libs/ggez"]
+	path = libs/ggez
+	url = git@github.com:Svengali/ggez.git
