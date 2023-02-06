@@ -11,9 +11,9 @@
             "program": "${workspaceFolder}/target/debug/village.exe",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/run",
             "console": "integratedTerminal",
-            "environment": [ {"name": "CARGO_MANIFEST_DIR", "value": "${workspaceFolder}" } ]
+            "environment": [ {"name": "CARGO_MANIFEST_DIR", "value": "${workspaceFolder}/run" } ]
         },
         {
             "name": "Release",
@@ -22,12 +22,12 @@
             "program": "${workspaceFolder}/target/release/village.exe",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/run",
             "console": "integratedTerminal",
             "environment": [
                 {
                     "name": "CARGO_MANIFEST_DIR",
-                    "value": "${workspaceFolder}"
+                    "value": "${workspaceFolder}/run"
                 }
             ]
         }

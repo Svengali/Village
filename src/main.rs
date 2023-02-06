@@ -373,7 +373,7 @@ impl MainState {
 
         self.shots.push(shot);
 
-        self.assets.shot_sound.play(ctx)?;
+        //self.assets.shot_sound.play(ctx)?;
 
         Ok(())
     }
@@ -396,7 +396,7 @@ impl MainState {
                     rock.life = 0.0;
                     self.score += 1;
 
-                    self.assets.hit_sound.play(ctx)?;
+                    //self.assets.hit_sound.play(ctx)?;
                 }
             }
         }
@@ -418,9 +418,9 @@ impl MainState {
 
 fn print_instructions() {
     println!();
-    println!("Welcome to ASTROBLASTO!");
+    println!("Welcome to Village!");
     println!();
-    println!("How to play:");
+     println!("How to play:");
     println!("L/R arrow keys rotate your ship, up thrusts, space bar fires");
     println!();
 }
@@ -440,7 +440,7 @@ fn draw_actor(
         .offset(Point2::new(0.5, 0.5));
     canvas.draw(image, drawparams);
 
-    canvas.draw(instances, param);
+    //canvas.draw(instances, param);
 }
 
 /// **********************************************************************
@@ -622,12 +622,12 @@ pub fn main() -> GameResult {
         path.push("resources");
         path
     } else {
-        path::PathBuf::from("./resources")
+        path::PathBuf::from("./run/resources")
     };
 
-    let cb = ContextBuilder::new("astroblasto", "ggez")
-        .window_setup(conf::WindowSetup::default().title("Astroblasto!"))
-        .window_mode(conf::WindowMode::default().dimensions(640.0, 480.0))
+    let cb = ContextBuilder::new("village", "marcsh")
+        .window_setup(conf::WindowSetup::default().title("Village!"))
+        .window_mode(conf::WindowMode::default().dimensions(1280.0, 800.0))
         .add_resource_path(resource_dir);
 
     let (mut ctx, events_loop) = cb.build()?;
