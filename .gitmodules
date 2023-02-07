@@ -1,3 +1,12 @@
 [submodule "libs/ggez"]
 	path = libs/ggez
 	url = git@github.com:Svengali/ggez.git
+[submodule "libs/wgpu"]
+	path = libs/wgpu
+	url = git@github.com:Svengali/wgpu.git
+[submodule "libs/glam-rs"]
+	path = libs/glam-rs
+	url = git@github.com:Svengali/glam-rs.git
+[submodule "libs/serde"]
+	path = libs/serde
+	url = git@github.com:Svengali/serde.git

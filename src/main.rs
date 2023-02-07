@@ -64,7 +64,7 @@ impl Default for ActorType {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 struct Actor {
     tag: ActorType,
     pos: Point2,
@@ -315,7 +315,6 @@ impl Default for InputState {
 /// this small it hardly matters.
 /// **********************************************************************
 
-#[derive(Default)]
 struct MainState {
     // because we want to screenshot, we need to ensure we're rendering to Rgba8
     screen: graphics::ScreenImage,
@@ -352,15 +351,20 @@ impl MainState {
         let screen =
             graphics::ScreenImage::new(ctx, graphics::ImageFormat::Rgba8UnormSrgb, 1., 1., 1);
 
-        let s = MainState {
-            screen,
-            player,
-            screen_width: width,
-            screen_height: height,
-            assets,
-            ..Default::default()
-        };
-
+            let s = MainState {
+                screen,
+                player,
+                shots: Vec::new(),
+                rocks,
+                level: 0,
+                score: 0,
+                assets,
+                screen_width: width,
+                screen_height: height,
+                input: InputState::default(),
+                player_shot_timeout: 0.0,    
+            };
+    
         Ok(s)
     }
 
