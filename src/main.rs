@@ -14,6 +14,7 @@ use ggez::{Context, ContextBuilder, GameResult};
 
 use ggez::input::keyboard::KeyInput;
 use rand::Rng;
+use serde::{Deserialize, Serialize};
 use std::env;
 use std::path;
 
@@ -50,14 +51,20 @@ fn random_vec(max_magnitude: f32) -> Vector2 {
 /// real ECS, but for this it's enough to say that all our game objects
 /// contain pretty much the same data.
 /// **********************************************************************
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 enum ActorType {
     Player,
     Rock,
     Shot,
 }
 
-#[derive(Debug)]
+impl Default for ActorType {
+    fn default() -> Self {
+        ActorType::Player
+    }
+}
+
+#[derive(Debug, Serialize, Deserialize)]
 struct Actor {
     tag: ActorType,
     pos: Point2,
@@ -308,17 +315,18 @@ impl Default for InputState {
 /// this small it hardly matters.
 /// **********************************************************************
 
+#[derive(Default)]
 struct MainState {
     // because we want to screenshot, we need to ensure we're rendering to Rgba8
     screen: graphics::ScreenImage,
     player: Actor,
+    screen_width: f32,
+    screen_height: f32,
     shots: Vec<Actor>,
     rocks: Vec<Actor>,
     level: i32,
     score: i32,
     assets: Assets,
-    screen_width: f32,
-    screen_height: f32,
     input: InputState,
     player_shot_timeout: f32,
 }
@@ -347,15 +355,10 @@ impl MainState {
         let s = MainState {
             screen,
             player,
-            shots: Vec::new(),
-            rocks,
-            level: 0,
-            score: 0,
-            assets,
             screen_width: width,
             screen_height: height,
-            input: InputState::default(),
-            player_shot_timeout: 0.0,
+            assets,
+            ..Default::default()
         };
 
         Ok(s)
@@ -420,7 +423,7 @@ fn print_instructions() {
     println!();
     println!("Welcome to Village!");
     println!();
-     println!("How to play:");
+    println!("How to play:");
     println!("L/R arrow keys rotate your ship, up thrusts, space bar fires");
     println!();
 }
