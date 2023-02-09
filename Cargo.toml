@@ -10,6 +10,7 @@ edition = "2021"
 [patch.crates-io]
 ggez = { path = "libs/ggez" }
 serde = { path="libs/serde/serde" }
+wgpu = { path="libs/wgpu/wgpu" }
 
 
 [dependencies]
