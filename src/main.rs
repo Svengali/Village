@@ -2,6 +2,13 @@
 //! The idea is that this game is simple but still
 //! non-trivial enough to be interesting.
 
+mod ent;
+mod com;
+
+
+//use ent::*;
+
+
 use ggez::audio;
 use ggez::audio::SoundSource;
 use ggez::conf;
@@ -17,6 +24,8 @@ use rand::Rng;
 use serde::{Deserialize, Serialize};
 use std::env;
 use std::path;
+
+
 
 type Point2 = Vec2;
 type Vector2 = Vec2;
@@ -328,6 +337,7 @@ struct MainState {
     assets: Assets,
     input: InputState,
     player_shot_timeout: f32,
+    world: ent::World,
 }
 
 impl MainState {
@@ -337,7 +347,7 @@ impl MainState {
         print_instructions();
 
         // Seed our RNG
-        let mut seed: [u8; 8] = [0; 8];
+        //let mut seed: [u8; 8] = [0; 8];
 
 
         //getrandom::getrandom(&mut seed[..]).expect("Could not create RNG seed");
@@ -362,7 +372,8 @@ impl MainState {
                 screen_width: width,
                 screen_height: height,
                 input: InputState::default(),
-                player_shot_timeout: 0.0,    
+                player_shot_timeout: 0.0,
+                world: ent::World::new(),
             };
     
         Ok(s)
@@ -639,6 +650,14 @@ pub fn main() -> GameResult {
 
     let (mut ctx, events_loop) = cb.build()?;
 
-    let game = MainState::new(&mut ctx)?;
-    event::run(ctx, events_loop, game)
+    let state = MainState::new(&mut ctx)?;
+
+    let _ent = ent::Entity::new();
+
+    let _id = std::any::TypeId::of::<ent::Entity>();
+
+    //state.world.add( ent );
+
+    event::run(ctx, events_loop, state)
+
 }
