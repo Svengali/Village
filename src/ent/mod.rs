@@ -1,6 +1,13 @@
 
 
+
+
+
 use std::collections::HashMap;
+use std::sync::atomic::{AtomicUsize, Ordering};
+
+
+
 
 use std::sync::atomic::{AtomicU64, Ordering};
 
@@ -11,7 +18,18 @@ pub struct Id(u64);
 
 static S_CURRENT_ID: AtomicU64 = AtomicU64::new(1024);
 
+static s_next_id: AtomicUsize = AtomicUsize::new( 1024 );
 
+impl Id {
+    pub fn next() -> Id {
+
+        let next_id = s_next_id.fetch_add(1, Ordering::Acquire);
+
+        Id {
+            id: next_id,
+        }
+    }
+}
 
 
 #[derive(Default)]
@@ -27,25 +45,15 @@ pub struct Entity
 
 impl Entity {
     pub fn new() -> Entity {
-        
-        let id = Id(S_CURRENT_ID.fetch_add(1, Ordering::AcqRel));
-
         Entity {
-            id,
-            ..Default::default()
+            id: Id::next(),
         }
     }
 }
 
-
-#[derive(Default)]
-pub struct World
-{
-
+#[derive(Debug, Default)]
+pub struct World {
     map: HashMap<Id, Entity>,
-
-
-
 }
 
 impl World

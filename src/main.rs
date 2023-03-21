@@ -338,6 +338,10 @@ struct MainState {
     input: InputState,
     player_shot_timeout: f32,
     world: ent::World,
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 }
 
 impl MainState {
@@ -345,13 +349,6 @@ impl MainState {
         println!("Game resource path: {:?}", ctx.fs);
 
         print_instructions();
-
-        // Seed our RNG
-        //let mut seed: [u8; 8] = [0; 8];
-
-
-        //getrandom::getrandom(&mut seed[..]).expect("Could not create RNG seed");
-        //let mut rng = Rand32::new(u64::from_ne_bytes(seed));
 
         let assets = Assets::new(ctx)?;
         let player = create_player();
@@ -361,25 +358,31 @@ impl MainState {
         let screen =
             graphics::ScreenImage::new(ctx, graphics::ImageFormat::Rgba8UnormSrgb, 1., 1., 1);
 
-            let s = MainState {
-                screen,
-                player,
-                shots: Vec::new(),
-                rocks,
-                level: 0,
-                score: 0,
-                assets,
-                screen_width: width,
-                screen_height: height,
-                input: InputState::default(),
-                player_shot_timeout: 0.0,
-                world: ent::World::new(),
-            };
+        let mut world = ent::World::new();
+
+        let ent = ent::Entity::new();
+
+        world.add( ent );
+
+        let s = MainState {
+            screen,
+            player,
+            shots: Vec::new(),
+            rocks,
+            level: 0,
+            score: 0,
+            assets,
+            screen_width: width,
+            screen_height: height,
+            input: InputState::default(),
+            player_shot_timeout: 0.0,
+            world,
+        };
     
         Ok(s)
     }
 
-    fn fire_player_shot(&mut self, ctx: &Context) -> GameResult {
+    fn fire_player_shot(&mut self, _ctx: &Context) -> GameResult {
         self.player_shot_timeout = PLAYER_SHOT_TIME;
 
         let player = &self.player;
@@ -401,7 +404,7 @@ impl MainState {
         self.rocks.retain(|r| r.life > 0.0);
     }
 
-    fn handle_collisions(&mut self, ctx: &Context) -> GameResult {
+    fn handle_collisions(&mut self, _ctx: &Context) -> GameResult {
         for rock in &mut self.rocks {
             let pdistance = rock.pos - self.player.pos;
             if pdistance.length() < (self.player.bbox_size + rock.bbox_size) {
@@ -457,6 +460,8 @@ fn draw_actor(
         .rotation(actor.facing as f32)
         .offset(Point2::new(0.5, 0.5));
     canvas.draw(image, drawparams);
+
+    
 
     //canvas.draw(instances, param);
 }
@@ -636,15 +641,17 @@ pub fn main() -> GameResult {
     // We add the CARGO_MANIFEST_DIR/resources to the resource paths
     // so that ggez will look in our cargo project directory for files.
 
-    /*
+    //*
     let vars = env::vars();
 
     for var in vars {
         println!( "{} = {}", var.0, var.1 );
     }
-    */
+    // */
 
     let cargo_dir = env::var("CARGO_MANIFEST_DIR");
+
+    println!("{}", cargo_dir.clone().unwrap_or_default());
 
     let resource_dir = if let Ok(manifest_dir) = cargo_dir {
         let mut path = path::PathBuf::from(manifest_dir);
