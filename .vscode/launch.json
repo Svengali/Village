@@ -16,6 +16,17 @@
             "environment": [ {"name": "CARGO_MANIFEST_DIR", "value": "${workspaceFolder}/run" } ]
         },
         {
+            "name": "Debug [Mac]",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/target/debug/village",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/run",
+            //"console": "integratedTerminal",
+            "env": { "CARGO_MANIFEST_DIR": "${workspaceFolder}/run" }
+        },
+        {
             "name": "Release",
             "type": "cppvsdbg",
             "request": "launch",

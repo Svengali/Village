@@ -90,7 +90,7 @@ struct Actor {
 }
 
 const PLAYER_LIFE: f32 = 1.0;
-const SHOT_LIFE: f32 = 2.0;
+const SHOT_LIFE: f32 = 5.0;
 const ROCK_LIFE: f32 = 1.0;
 
 const PLAYER_BBOX: f32 = 12.0;
@@ -186,7 +186,7 @@ const PLAYER_THRUST: f32 = 100.0;
 /// Rotation in radians per second.
 const PLAYER_TURN_RATE: f32 = 3.0;
 /// Refire delay between shots, in seconds.
-const PLAYER_SHOT_TIME: f32 = 0.5;
+const PLAYER_SHOT_TIME: f32 = 0.01;
 
 fn player_handle_input(actor: &mut Actor, input: &InputState, dt: f32) {
     actor.facing += dt * PLAYER_TURN_RATE * input.xaxis;
@@ -585,13 +585,13 @@ impl EventHandler for MainState {
         _repeated: bool,
     ) -> GameResult {
         match input.keycode {
-            Some(KeyCode::Up) => {
+            Some(KeyCode::Up) | Some(KeyCode::W) => {
                 self.input.yaxis = 1.0;
             }
-            Some(KeyCode::Left) => {
+            Some(KeyCode::Left) | Some(KeyCode::A) => {
                 self.input.xaxis = -1.0;
             }
-            Some(KeyCode::Right) => {
+            Some(KeyCode::Right) | Some(KeyCode::D) => {
                 self.input.xaxis = 1.0;
             }
             Some(KeyCode::Space) => {
@@ -612,10 +612,10 @@ impl EventHandler for MainState {
 
     fn key_up_event(&mut self, _ctx: &mut Context, input: KeyInput) -> GameResult {
         match input.keycode {
-            Some(KeyCode::Up) => {
+            Some(KeyCode::Up) | Some(KeyCode::W) => {
                 self.input.yaxis = 0.0;
             }
-            Some(KeyCode::Left | KeyCode::Right) => {
+            Some(KeyCode::Left | KeyCode::Right)  | Some(KeyCode::A | KeyCode::D)=> {
                 self.input.xaxis = 0.0;
             }
             Some(KeyCode::Space) => {
@@ -635,7 +635,18 @@ impl EventHandler for MainState {
 pub fn main() -> GameResult {
     // We add the CARGO_MANIFEST_DIR/resources to the resource paths
     // so that ggez will look in our cargo project directory for files.
-    let resource_dir = if let Ok(manifest_dir) = env::var("CARGO_MANIFEST_DIR") {
+
+    /*
+    let vars = env::vars();
+
+    for var in vars {
+        println!( "{} = {}", var.0, var.1 );
+    }
+    */
+
+    let cargo_dir = env::var("CARGO_MANIFEST_DIR");
+
+    let resource_dir = if let Ok(manifest_dir) = cargo_dir {
         let mut path = path::PathBuf::from(manifest_dir);
         path.push("resources");
         path
@@ -645,7 +656,7 @@ pub fn main() -> GameResult {
 
     let cb = ContextBuilder::new("village", "marcsh")
         .window_setup(conf::WindowSetup::default().title("Village!"))
-        .window_mode(conf::WindowMode::default().dimensions(1280.0, 800.0))
+        .window_mode(conf::WindowMode::default().dimensions(2000.0, 1200.0))
         .add_resource_path(resource_dir);
 
     let (mut ctx, events_loop) = cb.build()?;
