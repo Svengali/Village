@@ -663,9 +663,38 @@ pub fn main() -> GameResult {
 
     let state = MainState::new(&mut ctx)?;
 
-    let _ent = ent::Entity::new();
+    /*
+
+    //Verify assumptions about references
+
+    let mut ent = ent::Entity::new();
 
     let _id = std::any::TypeId::of::<ent::Entity>();
+
+
+    let mut r = com::Renderable {
+        ..Default::default()
+    };
+
+    r.test = 10;
+
+    println!("Test {}", r.test);
+
+    ent.com.add( r );
+
+    let e_mut = ent.com.get_mut::<com::Renderable>();
+
+    let r_def = &mut com::Renderable::default();
+
+    let r_new = e_mut.unwrap_or( r_def );
+
+    println!("Test {}", r_new.test);
+
+    r_new.test = 20;
+
+    println!("Test {}", r_new.test);
+
+    // */
 
     //state.world.add( ent );
 

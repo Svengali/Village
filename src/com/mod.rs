@@ -9,9 +9,13 @@ trait Component {
     fn as_any_mut(&mut self) -> &mut dyn Any;
 }
 
-struct RenderCom;
+#[derive(Default, Copy, Clone)]
+pub struct Renderable {
+    pub test: u64,
 
-impl Component for RenderCom {
+}
+
+impl Component for Renderable {
     fn as_any(&self) -> &dyn Any {
         self
     }
@@ -50,7 +54,7 @@ impl Components {
         }
     }
 
-    fn add<T: 'static + Component>(&mut self, component: T) {
+    pub fn add<T: 'static + Component>(&mut self, component: T) {
 
         let type_id = std::any::TypeId::of::<T>();
 
@@ -58,7 +62,7 @@ impl Components {
     }
 
 
-    fn get<T: 'static + Component>(&self, entity_id: usize) -> Option<&T> {
+    pub fn get<T: 'static + Component>(&self) -> Option<&T> {
         let type_id = std::any::TypeId::of::<T>();
 
         let val = self.components.get(&type_id);
@@ -80,7 +84,7 @@ impl Components {
         */
     }
 
-    fn get_mut<T: 'static + Component>(&mut self, entity_id: usize) -> Option<&mut T> {
+    pub fn get_mut<T: 'static + Component>(&mut self) -> Option<&mut T> {
         let type_id = std::any::TypeId::of::<T>();
 
         let val = self.components.get_mut(&type_id);
