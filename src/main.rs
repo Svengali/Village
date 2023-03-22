@@ -4,7 +4,7 @@
 
 mod ent;
 mod com;
-
+mod res;
 
 //use ent::*;
 
@@ -338,10 +338,6 @@ struct MainState {
     input: InputState,
     player_shot_timeout: f32,
     world: ent::World,
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 }
 
 impl MainState {
