@@ -60,6 +60,9 @@ impl World
         }
     }
 
+    pub fn test() {
+    }
+
     pub fn add(&mut self, ent: Entity ) {
         self.map.insert(ent.id, ent);
     }

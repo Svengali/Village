@@ -4,10 +4,11 @@ use std::{any::*, collections::{HashMap, hash_map::DefaultHasher}, hash::Hash};
 
 use std::any::Any;
 
-trait Component {
+pub trait Component {
     fn as_any(&self) -> &dyn Any;
     fn as_any_mut(&mut self) -> &mut dyn Any;
 }
+
 
 #[derive(Default, Copy, Clone)]
 pub struct Renderable {
@@ -22,6 +23,16 @@ impl Component for Renderable {
 
     fn as_any_mut(&mut self) -> &mut dyn Any {
         self
+    }
+}
+
+trait Render {
+    fn render();
+}
+
+impl Render for Renderable {
+    fn render() {
+
     }
 }
 
@@ -83,6 +94,7 @@ impl Components {
         }
         */
     }
+
 
     pub fn get_mut<T: 'static + Component>(&mut self) -> Option<&mut T> {
         let type_id = std::any::TypeId::of::<T>();
