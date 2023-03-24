@@ -4,7 +4,7 @@
 
 
 use std::collections::HashMap;
-use std::sync::atomic::{AtomicU64, AtomicUsize, Ordering};
+use std::sync::atomic::{AtomicU64, Ordering};
 
 
 use crate::com;
@@ -60,14 +60,14 @@ impl World
         }
     }
 
-    pub fn test() {
+    pub fn _test() {
     }
 
     pub fn add(&mut self, ent: Entity ) {
         self.map.insert(ent.id, ent);
     }
 
-    pub fn lookup(&self, id: Id) -> Option<&Entity> {
+    pub fn _lookup(&self, id: Id) -> Option<&Entity> {
         self.map.get( &id )
     }
 

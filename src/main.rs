@@ -11,26 +11,14 @@ mod state;
 //use ent::*;
 
 
-use ggez::audio;
-use ggez::audio::SoundSource;
-use ggez::conf;
-use ggez::event::{self, EventHandler};
-use ggez::glam::*;
-use ggez::graphics::{self, Color};
-use ggez::input::keyboard::KeyCode;
-use ggez::timer;
-use ggez::{Context, ContextBuilder, GameResult};
+use ggez::{conf, ContextBuilder};
+use ggez::event::{self};
+use ggez::{GameResult};
 
-use ggez::input::keyboard::KeyInput;
-use rand::Rng;
-use serde::{Deserialize, Serialize};
+//use serde::{Deserialize, Serialize};
+
 use std::env;
 use std::path;
-
-
-
-type Point2 = Vec2;
-type Vector2 = Vec2;
 
 /// **********************************************************************
 /// Finally our main function!  Which merely sets up a config and calls

@@ -1,6 +1,6 @@
 
 
-use std::{any::*, collections::{HashMap, hash_map::DefaultHasher}, hash::Hash};
+use std::{any::*, collections::{HashMap}};
 
 use std::any::Any;
 
@@ -38,8 +38,8 @@ impl Render for Renderable {
 
 
 struct Position {
-    x: f32,
-    y: f32,
+    _x: f32,
+    _y: f32,
 }
 
 impl Component for Position {
@@ -59,7 +59,7 @@ pub struct Components {
 }
 
 impl Components {
-    fn new() -> Components {
+    fn _new() -> Components {
         Components {
             components: HashMap::new(),
         }
@@ -73,7 +73,7 @@ impl Components {
     }
 
 
-    pub fn get<T: 'static + Component>(&self) -> Option<&T> {
+    pub fn _get<T: 'static + Component>(&self) -> Option<&T> {
         let type_id = std::any::TypeId::of::<T>();
 
         let val = self.components.get(&type_id);
@@ -96,7 +96,7 @@ impl Components {
     }
 
 
-    pub fn get_mut<T: 'static + Component>(&mut self) -> Option<&mut T> {
+    pub fn _get_mut<T: 'static + Component>(&mut self) -> Option<&mut T> {
         let type_id = std::any::TypeId::of::<T>();
 
         let val = self.components.get_mut(&type_id);

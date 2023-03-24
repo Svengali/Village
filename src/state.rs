@@ -1,18 +1,16 @@
 use ggez::audio;
-use ggez::audio::SoundSource;
-use ggez::conf;
-use ggez::event::{self, EventHandler};
+//use ggez::audio::SoundSource;
+//use ggez::conf;
+use ggez::event::{EventHandler};
 use ggez::glam::*;
 use ggez::graphics::{self, Color};
 use ggez::input::keyboard::KeyCode;
 use ggez::timer;
-use ggez::{Context, ContextBuilder, GameResult};
+use ggez::{Context, GameResult};
 
 use ggez::input::keyboard::KeyInput;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
-use std::env;
-use std::path;
 
 type Point2 = Vec2;
 type Vector2 = Vec2;
@@ -24,7 +22,7 @@ type Vector2 = Vec2;
 
 use super::ent;
 use super::com;
-use super::res;
+//use super::res;
 
 
 pub struct MainState {
@@ -241,7 +239,7 @@ const MAX_PHYSICS_VEL_SQ: f32 = MAX_PHYSICS_VEL * MAX_PHYSICS_VEL;
 fn update_actor_position(actor: &mut Actor, dt: f32) {
     // Clamp the velocity to the max efficiently
     let norm_sq = actor.velocity.length_squared();
-    if norm_sq > MAX_PHYSICS_VEL * MAX_PHYSICS_VEL {
+    if norm_sq > MAX_PHYSICS_VEL_SQ {
         actor.velocity = actor.velocity / norm_sq.sqrt() * MAX_PHYSICS_VEL;
     }
     let dv = actor.velocity * dt;
