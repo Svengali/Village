@@ -78,7 +78,9 @@ impl Components {
 
         let val = self.components.get(&type_id);
 
-        val?.as_any().downcast_ref::<T>()
+        let val_any = val?.as_any();
+
+        val_any.downcast_ref::<T>()
 
         /*
         match val {

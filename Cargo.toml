@@ -22,4 +22,5 @@ rand = "0.8.5"
 semeion = { version = "0.9.1", features = ["parallel"] }
 serde = { version = "1.0.152", features = ["derive"] }
 serde_json = "1.0.91"
+im = { version = "*", features = ["proptest", "serde", "rayon"] }
 

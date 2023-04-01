@@ -2,6 +2,11 @@
 //! The idea is that this game is simple but still
 //! non-trivial enough to be interesting.
 
+//#![feature(inline_const)]
+
+
+mod core;
+
 mod ent;
 mod com;
 mod res;
