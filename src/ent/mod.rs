@@ -6,8 +6,9 @@
 use std::collections::HashMap;
 use std::sync::atomic::{AtomicU64, Ordering};
 
-
 use crate::com;
+
+use crate::core::Systems;
 
 #[derive(Clone, Copy, Debug, Default, Hash, Eq, PartialEq)]
 pub struct Id(u64);
@@ -49,6 +50,7 @@ impl Entity {
 #[derive(Default)]
 pub struct World {
     map: HashMap<Id, Entity>,
+    systems: Systems<'static>,
 }
 
 impl World

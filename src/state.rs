@@ -395,6 +395,9 @@ impl MainState {
         ent.com.add(render);
 
 
+        
+
+
         world.add( ent );
 
         let s = MainState {
