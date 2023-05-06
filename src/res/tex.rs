@@ -1,6 +1,8 @@
 use std::sync::{Mutex, Arc};
 
-use ggez::graphics::{Image, Drawable, Rect};
+//use ggez::graphics::{Image, Drawable, Rect};
+
+use ggez::graphics::{Image};
 
 use super::mgr::Loader;
 

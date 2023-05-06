@@ -1,93 +1,61 @@
+use std::cell::RefCell;
+use std::ops::Deref;
+use std::rc::Rc;
+use std::any::Any;
+use std::collections::HashMap;
+use std::ops::DerefMut;
 
-
-
-
-use std::{pin::Pin, any::Any};
-
-
-pub trait Ticks {
-    fn tick(&mut self);
-    fn other(&mut self);
+trait System {
+    fn update(&self);
 }
 
-
-pub trait Clock {
-
+trait Render {
+    fn render(&self);
 }
 
-
-
-pub trait System: Any {
-    fn start(&mut self);
-    fn stop(&mut self);
+trait Physics {
+    fn apply_physics(&mut self);
 }
 
-#[derive(Default)]
-pub struct Systems<'a> {
-    systems: Vec<&'a dyn System>,
-    ticks: Vec<&'a dyn Ticks>,
+pub struct Systems {
+    systems: Vec<Rc<dyn System>>,
+    render_systems: Vec<Rc<dyn Render>>,
+    physics_systems: Vec<Rc<RefCell<dyn Physics>>>,
 }
 
-impl<'a> Systems<'a> {
+impl Systems {
     pub fn new() -> Self {
         Systems {
             systems: Vec::new(),
-            ticks: Vec::new(),
+            render_systems: Vec::new(),
+            physics_systems: Vec::new(),
         }
     }
 
-    pub fn register<T>(&mut self, system: &'a T)
-    where
-        T: System + 'a,
-    {
-        self.systems.push(system);
+    fn add<T: 'static + System>(&mut self, system: T) -> Rc<T> {
+        let system = Rc::new(system);
 
-        // Check if the system implements the Ticks trait
-        if let Some(ticks) = system.as_any().downcast_ref::<T>() {
+        self.systems.push( system.clone() );
 
-            let ticks_as = ticks.as_any();
+        system
+    }
 
-            if let Some(ticks2) = ticks_as.downcast_ref::<&dyn Ticks>() {
-                self.ticks.push(*ticks2);
-            }
+    fn update(&mut self) {
+        for system in &mut self.systems {
+            system.update();
         }
     }
 
-    pub fn tick_all_st(&mut self) {
-        for tick_src in self.ticks.iter_mut() {
-            // This unsafe block is required because we can't guarantee that there is no aliasing
-            // between mutable references in the ticks vector.
-            // However, this is safe in this specific case because the tick_all function
-            // doesn't have access to the Systems struct or the ticks vector during iteration.
-            let tick_raw = *tick_src as *const dyn Ticks;
-            let tick: &mut dyn Ticks = unsafe { &mut *(tick_raw as *mut dyn Ticks) };
-            tick.tick();
+    fn render(&self) {
+        for system in &self.render_systems {
+            system.render();
         }
     }
 
-
-    pub fn other_all_st(&mut self) {
-        for tick_src in self.ticks.iter_mut() {
-            // This unsafe block is required because we can't guarantee that there is no aliasing
-            // between mutable references in the ticks vector.
-            // However, this is safe in this specific case because the tick_all function
-            // doesn't have access to the Systems struct or the ticks vector during iteration.
-            let tick_raw = *tick_src as *const dyn Ticks;
-            let tick: &mut dyn Ticks = unsafe { &mut *(tick_raw as *mut dyn Ticks) };
-            tick.other();
+    fn apply_physics(&mut self) {
+        for system in &mut self.physics_systems {
+            let mut thing = system.borrow_mut();
+            thing.apply_physics();
         }
-    }
-
-
-}
-
-// Add as_any method for the System trait
-pub trait SystemExt: System {
-    fn as_any(&self) -> &dyn Any;
-}
-
-impl<T: System + 'static> SystemExt for T {
-    fn as_any(&self) -> &dyn Any {
-        self
     }
 }

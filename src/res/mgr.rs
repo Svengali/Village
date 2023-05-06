@@ -1,4 +1,6 @@
-use std::borrow::Cow;
+
+
+//use std::borrow::Cow;
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
 
@@ -30,7 +32,7 @@ impl<L: Loader> Mgr<L> {
     }
 
     pub fn get_generic<K>(&self, path: &str) -> Result<Handle<K>, String> {
-        Err(S("Test"))        
+        Err(S("Test"))
     }
 
     pub fn get(&self, path: &str) -> Result<Handle<L::Resource>, String> {

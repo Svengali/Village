@@ -8,7 +8,8 @@ use std::sync::atomic::{AtomicU64, Ordering};
 
 use crate::com;
 
-use crate::core::Systems;
+use crate::core;
+
 
 #[derive(Clone, Copy, Debug, Default, Hash, Eq, PartialEq)]
 pub struct Id(u64);
@@ -47,10 +48,11 @@ impl Entity {
     }
 }
 
-#[derive(Default)]
+
+
 pub struct World {
+    pub systems: core::Systems,
     map: HashMap<Id, Entity>,
-    systems: Systems<'static>,
 }
 
 impl World
@@ -58,6 +60,7 @@ impl World
 
     pub fn new() -> World {
         World {
+            systems: core::Systems::new(),
             ..Default::default()
         }
     }
@@ -73,4 +76,10 @@ impl World
         self.map.get( &id )
     }
 
+}
+
+impl Default for World {
+    fn default() -> Self {
+        Self::new()
+    }
 }
