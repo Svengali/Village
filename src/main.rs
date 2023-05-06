@@ -4,6 +4,7 @@
 
 //#![feature(inline_const)]
 
+#![feature(min_specialization)]
 
 mod core;
 
