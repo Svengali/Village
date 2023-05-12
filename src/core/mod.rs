@@ -1,9 +1,7 @@
 use std::cell::RefCell;
-use std::ops::Deref;
 use std::rc::Rc;
-use std::any::Any;
-use std::collections::HashMap;
-use std::ops::DerefMut;
+
+pub mod mov;
 
 trait System {
     fn update(&self);
@@ -32,7 +30,7 @@ impl Systems {
         }
     }
 
-    fn add<T: 'static + System>(&mut self, system: T) -> Rc<T> {
+    pub fn add<T: 'static + System>(&mut self, system: T) -> Rc<T> {
         let system = Rc::new(system);
 
         self.systems.push( system.clone() );
@@ -40,19 +38,19 @@ impl Systems {
         system
     }
 
-    fn update(&mut self) {
+    pub fn update(&mut self) {
         for system in &mut self.systems {
             system.update();
         }
     }
 
-    fn render(&self) {
+    pub fn render(&self) {
         for system in &self.render_systems {
             system.render();
         }
     }
 
-    fn apply_physics(&mut self) {
+    pub fn apply_physics(&mut self) {
         for system in &mut self.physics_systems {
             let mut thing = system.borrow_mut();
             thing.apply_physics();

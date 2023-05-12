@@ -31,7 +31,7 @@ impl<L: Loader> Mgr<L> {
         }
     }
 
-    pub fn get_generic<K>(&self, path: &str) -> Result<Handle<K>, String> {
+    pub fn get_generic<K>(&self, _path: &str) -> Result<Handle<K>, String> {
         Err(S("Test"))
     }
 

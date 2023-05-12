@@ -112,7 +112,7 @@ impl Transactional for Counter {
     }
 }
 
-fn main() {
+fn _main() {
     let stm = STM::new();
     stm.add_data(Point { x: 0, y: 0 }).unwrap();
     stm.add_data(Counter { count: 0 }).unwrap();

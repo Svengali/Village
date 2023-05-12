@@ -1,5 +1,8 @@
-/*
-use super::*;
+
+
+//use super::*;
+
+use super::System;
 
 pub struct MoveSys {
     pub v: i32,
@@ -13,14 +16,8 @@ impl MoveSys {
     }
 }
 
-impl Tickable for MoveSys {
-    fn tick(&mut self) {
-        println!( "Tick!" );
+impl System for MoveSys {
+    fn update(&self) {
+        todo!()
     }
-
-    fn other(&mut self) {
-
-    }
-
 }
-*/

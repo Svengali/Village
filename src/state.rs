@@ -22,9 +22,9 @@ type Vector2 = Vec2;
 
 use super::ent;
 use super::com;
-use super::core::*;
+use super::core::mov;
+//use super::core::*;
 //use super::res;
-
 
 pub struct MainState {
     // because we want to screenshot, we need to ensure we're rendering to Rgba8
@@ -395,7 +395,9 @@ impl MainState {
 
         ent.com.add(render);
 
-        //let mut sys_move = mov::MoveSys::new();
+        let mut sys_move = mov::MoveSys::new();
+
+        world.systems.add( sys_move );
 
         //world.systems.add_system( sys_move );
 
