@@ -13,9 +13,15 @@
 ##   Handle line endings automatically for files detected as
 ##   text and leave all files detected as binary untouched.
 ##   This will handle all files NOT defined below.
-*                 text=lf
+## *                 text=lf
+
+# Set the default behavior for all files.
+*                 text=auto eol=lf
+
+
 
 # Source code
+*.rs              text
 *.bash            text eol=lf
 *.bat             text eol=crlf
 *.cmd             text eol=crlf
