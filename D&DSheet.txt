@@ -1,0 +1,90 @@
+
+**Name:** CodeMaster
+
+**Class:** Wizard (Level 14)
+
+**Race:** Human
+
+**Alignment:** Neutral Good
+
+**Background:** Guild Artisan (Programming Guild)
+
+**Height:** 5'4"
+
+**Weight:** Average
+
+**Age:** 50
+
+---
+
+**Ability Scores:**
+
+- **Strength (STR):** 8 (-1)
+- **Dexterity (DEX):** 12 (+1)
+- **Constitution (CON):** 10 (+0)
+- **Intelligence (INT):** 18 (+4) [With age and experience, your intelligence has grown even further.]
+- **Wisdom (WIS):** 14 (+2) [Your wisdom has increased with your age and experiences.]
+- **Charisma (CHA):** 14 (+2)
+
+---
+
+**Skills:**
+
+- **Arcana (INT)**
+- **Investigation (INT)**
+- **Perception (WIS)**
+- **Insight (WIS)**
+- **History (INT)** [With your years of experience, you've gained a lot of knowledge about the history of your field.]
+
+---
+
+**Class Features:**
+
+- **Spellcasting:** Your programming skills continue to translate into magical prowess.
+- **Arcane Recovery:** You have honed your ability to bounce back quickly, now recovering more magical energy.
+- **Arcane Tradition (School of Divination):** Your tendency to be an "absent-minded professor" aligns with the intuitive nature of divination magic. This includes features such as *Portent* (you can see glimpses of the future), *Expert Divination* (casting divination spells restores your magical energy), and *The Third Eye* (you can increase your focus to gain various perception benefits).
+
+---
+
+**Background Features:**
+
+- **Guild Membership**
+
+---
+
+**Equipment:**
+
+- A quarterstaff
+- An upgraded spellbook (Now containing many more spells and magical theories)
+- Artisan's tools (An advanced coder's kit: a high-end laptop with the latest coding software)
+- A letter of introduction from your guild
+- A set of traveler's clothes
+- A belt pouch containing 105 gp (Reflecting your increased wealth over time)
+
+---
+
+**Spells:**
+
+**Cantrips:**
+
+- **Mage Hand**
+- **Prestidigitation**
+- **Light:** Represents your ability to illuminate obscure code and bring clarity to complex problems.
+
+**1st Level Spells:**
+
+- **Identify**
+- **Magic Missile**
+
+**New Spells:**
+
+- **2nd Level:** *Detect Thoughts* (Represents your ability to understand and predict user needs and behaviors)
+- **3rd Level:** *Clairvoyance* (Your ability to oversee and manage large projects)
+- **4th Level:** *Arcane Eye* (Your experience allows you to spot potential issues in code more easily)
+- **5th Level:** *Rary's Telepathic Bond* (Represents your ability to work well in a team, even if communication isn't always verbal)
+- **6th Level:** *Contingency* (Your foresight allows you to plan for potential crashes or bugs)
+- **7th Level:** *Project Image* (You can present your ideas and plans clearly to others)
+
+---
+
+Your character has gained much wisdom and skill over the years, and while you may still struggle with focusing your attention at times, your experience and knowledge more than make up for it. Enjoy your adventures as a high-level wizard!
