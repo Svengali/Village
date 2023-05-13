@@ -22,7 +22,7 @@ type Vector2 = Vec2;
 
 use super::ent;
 use super::com;
-use super::core::mov;
+use super::sys::mov;
 //use super::core::*;
 //use super::res;
 
