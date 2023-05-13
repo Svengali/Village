@@ -80,6 +80,9 @@ impl World
 
 impl Default for World {
     fn default() -> Self {
-        Self::new()
+        World {
+            systems: core::Systems::new(),
+            map: HashMap::new(),
+        }
     }
 }

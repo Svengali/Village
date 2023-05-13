@@ -1,46 +1,48 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Debug",
-            "type": "cppvsdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/target/debug/village.exe",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/run",
-            "console": "integratedTerminal",
-            "environment": [ {"name": "CARGO_MANIFEST_DIR", "value": "${workspaceFolder}/run" } ]
-        },
-        {
-            "name": "Debug [Mac]",
-            "type": "lldb",
-            "request": "launch",
-            "program": "${workspaceFolder}/target/debug/village",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/run",
-            //"console": "integratedTerminal",
-            "env": { "CARGO_MANIFEST_DIR": "${workspaceFolder}/run" }
-        },
-        {
-            "name": "Release",
-            "type": "cppvsdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/target/release/village.exe",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/run",
-            "console": "integratedTerminal",
-            "environment": [
-                {
-                    "name": "CARGO_MANIFEST_DIR",
-                    "value": "${workspaceFolder}/run"
-                }
-            ]
-        }
-    ]
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Debug",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/target/debug/village.exe",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}/run",
+			"console": "integratedTerminal",
+			"environment": [
+				{ "name": "CARGO_MANIFEST_DIR", "value": "${workspaceFolder}/run" }
+			]
+		},
+		{
+			"name": "Debug [Mac]",
+			"type": "lldb",
+			"request": "launch",
+			"program": "${workspaceFolder}/target/debug/village",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}/run",
+			//"console": "integratedTerminal",
+			"env": { "CARGO_MANIFEST_DIR": "${workspaceFolder}/run" }
+		},
+		{
+			"name": "Release",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/target/release/village.exe",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}/run",
+			"console": "integratedTerminal",
+			"environment": [
+				{
+					"name": "CARGO_MANIFEST_DIR",
+					"value": "${workspaceFolder}/run"
+				}
+			]
+		}
+	]
 }
