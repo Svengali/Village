@@ -22,7 +22,8 @@ type Vector2 = Vec2;
 
 use super::ent;
 use super::com;
-use super::sys::mov;
+use super::sys;
+//use super::sys::mov;
 //use super::core::*;
 //use super::res;
 
@@ -395,7 +396,7 @@ impl MainState {
 
         ent.com.add(render);
 
-        let mut sys_move = mov::MoveSys::new();
+        let mut sys_move = sys::mov::Move::new();
 
         world.systems.add( sys_move );
 
@@ -564,7 +565,7 @@ impl EventHandler for MainState {
         }
 
         // And draw the GUI elements in the right places.
-        let level_dest = Point2::new(10.0, 10.0);
+        let level_dest = Point2::new( 10.0, 10.0);
         let score_dest = Point2::new(200.0, 10.0);
 
         let level_str = format!("Level: {}", self.level);

@@ -4,19 +4,19 @@
 
 use super::System;
 
-pub struct MoveSys {
+pub struct Move {
     pub v: i32,
 }
 
-impl MoveSys {
-    pub fn new() -> MoveSys {
-        MoveSys {
+impl Move {
+    pub fn new() -> Move {
+        Move {
             v: 1024,
         }
     }
 }
 
-impl System for MoveSys {
+impl System for Move {
     fn update(&self) {
         todo!()
     }
