@@ -9,13 +9,18 @@ pub trait Component {
     fn as_any_mut(&mut self) -> &mut dyn Any;
 }
 
+/*
+Test
+test
+
+ */
 
 #[derive(Default, Copy, Clone)]
 pub struct Renderable {
     pub test: u64,
 
 }
-
+https://discord.com/channels/625640148553695232/625640716785418242
 impl Component for Renderable {
     fn as_any(&self) -> &dyn Any {
         self
@@ -102,6 +107,8 @@ impl Components {
         let type_id = std::any::TypeId::of::<T>();
 
         let val = self.components.get_mut(&type_id);
+
+        let thing = 1 + 2;
 
         val?.as_any_mut().downcast_mut::<T>()
     }
